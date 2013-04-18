@@ -1,0 +1,242 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE BEER-WARE LICENSE (Revision 42): %
+% <r@twopi.eu> schrieb diese Datei. Solange Sie diesen Vermerk nicht entfernen, %
+% können Sie mit dem Material machen, was Sie möchten. Wenn wir uns eines Tages %
+% treffen und Sie denken, das Material ist es wert, können Sie mir dafür ein Bier %
+% ausgeben. Robert Hemstedt %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+%\usepackage{ucs}
+\usepackage[left=2.0cm, right=2.0cm, top=2.0cm, bottom=2.0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[ngerman]{babel}
+\usepackage{amssymb}
+\usepackage[amsthm,thmmarks]{ntheorem}
+\usepackage{bbm}
+% b) Lemma, Satz, Theorem usw.
+\makeatletter
+\renewtheoremstyle{plain}%
+  {\item[\hskip\labelsep \theorem@headerfont ##1\ ##2:]}%
+  {\item[\hskip\labelsep \theorem@headerfont ##1~##2~##3:]\mbox{}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{Theorem}{Theorem}[section]
+\newtheorem{Satz}[Theorem]{Satz}
+\newtheorem{Prop}[Theorem]{Proposition}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Korollar}[Theorem]{Korollar}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem*{Folgerung}[Theorem]{Folgerung}
+\newtheorem*{Behauptung}[Theorem]{Behauptung}
+
+\theorembodyfont{\upshape}
+\newtheorem{Bemerkung}[Theorem]{Bemerkung}
+\newtheorem{Beispiel}[Theorem]{Beispiel}
+%\newtheorem{Entscheidungsproblem}[Theorem]{Entscheidungsproblem}
+%\newtheorem{Algorithmus}[Theorem]{Algorithmus}
+%\newtheorem{Berechnungsproblem}[Theorem]{Berechnungsproblem}
+   
+
+\newcommand{\herv}[1]{{\emph{\textbf{#1}}}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cupdot}{\mathbin{\dot{\cup}}}
+
+\numberwithin{equation}{section}
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]
+{\begin{lrbox}{\fmbox}\begin{minipage}{#1}}
+{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+\linespread{1.05}
+\author{Felix Beck, Robert Hemstedt \\ \texttt{r@twopi.eu}}
+\title{Zusammenfassung\footnote{nach pers\"onlichen Aufzeichnungen} Einführung in Geometrie/Topologie\newline \newline \large{gehalten von Dr. Thomas Vogel, Universität Bonn} \\im Sommersemester 2013}
+\begin{document}
+\maketitle
+\section*{Hinweise zur Verwendung}
+Die stets aktuelle Version dieser Zusammenfassung lässt sich finden unter\\
+\texttt{} .\\
+Dort sind auch die \texttt{.tex}-Dateien zu finden, wenn man selbst Veränderungen vornehmen möchte. Bitte beachtet die \textbf{Lizenzhinweise}.\\
+
+Werter Kommilitone, diese Zusammenfassung basiert zum größten Teil auf Mitschriften unserer GeoTopo-Vorlesungen bei Dr. Vogel. Leider wird kein Skript zur Verfügung gestellt, sodass wir uns mal drangesetzt haben, selbst eine Zusammenfassung zu texen, da die Guttenberg-Tastatur bei \LaTeX - Dokumenten leider nicht so effektiv ist.
+
+Die Nummerierung der Sätze und Kapitelabschnitte erfolgt in der Reihenfolge der persönlichen Aufzeichnung.
+
+Gedacht ist diese Zusammenfassung explizit als Prüfungsvorbereitung und wird daher auch noch bis zur letzten Vorlesung weiterhin ergänzt. Wenn du Anmerkungen, Ergänzungen, Lob oder Kritik haben solltest, dann sprich einfach einen von uns an, schick eine E-Mail oder, was das beste wohl ist, benutze \texttt{github.com}, um eine \textit{pull}-Request zu schicken.
+
+Wir haften weder für \glqq fehlende\grqq\ Inhalte noch für inhaltliche oder sprachliche Fehler. 
+
+Wir hoffen, dass diese Zusammenfassung und der damit verbundene Aufwand sich nicht nur für uns als Verfasser, sondern auch noch für dich als Kommilitone lohnen und der Aufwand auch in Form einer möglichst guten Klausurnote entlohnt wird. \\
+Viel Spaß beim Lernen! \newpage
+\section*{Lizenz}
+Ich veröffentliche dieses Dokument unter der Beerware-Lizenz:\\ \\
+\hspace{-3.5cm}
+\begin{fmpage}{\textwidth}
+\glqq THE BEER-WARE LICENSE\grqq\ (Revision 42):\\
+\texttt{$<$r@twopi.eu$>$} schrieb diese Datei. Solange Sie diesen Vermerk nicht entfernen, können Sie mit dem Material machen, was Sie möchten. Wenn wir uns eines Tages treffen und Sie denken, das Material ist es wert, können Sie mir dafür ein Bier ausgeben. Robert Hemstedt
+\end{fmpage}
+\hspace{3.5cm} \\
+Weitere Hinweise lassen sich finden unter: \texttt{http://de.wikipedia.org/wiki/Beerware}
+
+\section{Metrische Räume}
+\begin{Definition}
+Sei $\left( X, d\right)$ eine Menge mit $d: X\times X \rightarrow \R$, sodass $\forall x, y, z \in X$
+\begin{equation*}
+\begin{split}
+&d\left(x, y\right)\ \geq 0\\
+&d\left(x, y\right)\ = 0 \Leftrightarrow x = y\\
+&d\left(x, z\right)\ \geq d\left(x, y\right)\ + d\left(y, z\right)\
+\end{split}
+\end{equation*}
+Dann heißt $\left(X, d\right)$ \herv{metrischer Raum}.
+\end{Definition}
+
+\begin{Definition}
+Seien $\left(X, d\right)$, $\left(X', d'\right)$ metrische Räume.\\
+Die Abbildung $f: X \rightarrow X'$ ist eine \herv{Isometrie}, falls $d\left(x, y\right) = d'\left(f\left(x\right), f\left(y\right)\right)$
+\end{Definition}
+
+\begin{Definition}
+Die Abbildung $f: \left(X, d\right) \rightarrow \left(X', d'\right)$ ist \herv{stetig} in $x \in X$, falls für alle $\delta > 0$ ein $\epsilon > 0$ existiert, sodass $f\left(B_{\epsilon}\left(x\right)\right) \subset B_{\delta}\left(f\left(x\right)\right)$, wobei $B_{r}\left(x\right) = \{x' \in X | d\left(x, x'\right) < r\}$ der \herv{offene} r-Ball um x ist.
+\end{Definition}
+
+\begin{Definition}
+Sei $\left(X, d\right)$ ein metrischer Raum.\\
+$U \subset X$ ist \herv{offen}, falls für alle $u \in U$ ein $\epsilon > 0$ existiert, sodass $B_{\epsilon}\left(x\right) \subset U$.\\
+$U \subset X$ ist \herv{abgeschlossen}, falls $X\setminus U$ offen ist.\\
+$U \subset X$ ist eine \herv{Umgebung} von $u \in U$, falls ein $\epsilon > 0$ existiert, sodass $B_{\epsilon}\left(U\right) \subset U$
+\end{Definition}
+
+$X$ und $\emptyset$ sind beide zugleich offen und abgeschlossen.
+
+Offene Bälle sind offen.
+
+\begin{Lemma}
+Sei $\left(X, d\right)$ ein metrischer Raum.
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\item Sei $I$ eine beliebige Indexmenge, $U_{i, i \in I} \subset X$ offen $\forall i \in I$. Dann ist $\bigcup\limits_{i \in I}U_i \subset X$ offen.
+\item Sei $I$ eine endliche Indexmenge, $U_{i, i \in I} \subset X$ offen $\forall i \in I$. Dann ist $\bigcap\limits_{i \in I}U_i \subset X$ offen.
+\end{enumerate}
+\end{Lemma}
+
+\begin{Definition}
+Eine Folge $\left(x_n\right)_{n \in \N}$ in $X$ \herv{konvergiert} gegen $x \in X$, wenn für alle $\epsilon > 0$ ein N$\left(\epsilon\right) \in \N$ existiert, sodass $d\left(x, x_n\right) < \epsilon$ für alle $n \geq$ N$\left(\epsilon\right)$.\\
+Eine Folge $\left(x_n\right)$ heißt \herv{Cauchy-Folge}, falls $\forall \epsilon > 0 \exists N: d\left(x_n, s_m\right) < \epsilon \forall n, m > N$.
+\end{Definition}
+
+\begin{Definition}
+$\left(X, d\right)$ ist \herv{beschränkt}, falls $\exists C \in \R : d\left(x, y\right) < C \quad \forall x, y \in X$.\\
+$\left(X, d\right)$ ist \herv{vollständig}, falls jede Cauchy-Folge konvergiert.
+\end{Definition}
+
+\begin{Definition}
+Sei X eine Menge und $d$, $d'$ Metriken auf X.\\
+$d$ und $d'$ sind \herv{äquivalent}, falls
+\begin{itemize}
+	\item für alle $x \in X, r>0$ es ein $r'>0$ gibt, sodass $B_{r'}^{d'}\left(x\right) \subset B_r^d\left(x\right)$
+	\item für alle $x \in X, r'>0$ es ein $r>0$ gibt, sodass $B_r^d\left(x\right) \subset B_{r'}^{d'}\left(x\right)$
+\end{itemize}
+\end{Definition}
+
+Sind $d$, $d'$ äquivalente Metriken, dann ist $U \subset \left(X, d\right)$ offen genau dann, wenn $U \subset \left(X, d'\right)$ offen ist; $x_n \rightarrow x$ in $\left(X, d\right)$ genau dann, wenn $x_n \rightarrow x$ in $\left(X, d'\right)$.
+
+Für Beschränktheit und Vollständigkeit gibt es keine analogen Aussagen:\\
+Sei $\left(X, d\right)$ ein metrischer Raum. Dann ist $d'\left(x, y\right) = \frac{d\left(x, y\right)}{1+d\left(x, y\right)}$ eine Metrik auf $X$, die äquivalent ist zu $d$. Aber $d'$ ist immer beschränkt (zB. $C = 1$), unabhängig davon, ob $d$ beschränkt ist oder nicht.
+
+$\left(X = \left[0, \infty\right], d_{St}\left(x, y\right) = \left|{x-y}\right|\right)$ ist vollständig.\\
+$d'\left(x, y\right) = \left|\frac{x}{1+x} + \frac{y}{1+y}\right|$ ist äquivalent zu $d_{St}$ und $x_n = n$ ist eine Cauchy-Folge bzgl. $d'$, aber nicht bzgl. $d$.
+
+\section{Topologische Räume}
+\begin{Definition}
+Sei $X$ eine Menge und $\mathcal{O} \subset \mathbb{P}\left(X\right)$ ein System von Teilmengen von $X$, sodass
+\begin{enumerate}
+	\item $\emptyset \in \mathcal{O}, X \in \mathcal{O}$
+	\item $I$ beliebige Indexmenge, $U_{i, i \in I} \in \mathcal{O} \quad \forall i \in I \Rightarrow \bigcup\limits_{i \in I} U_i \in \mathcal{O}$
+	\item $I$ endliche Indexmenge, $U_{i, i \in I} \in \mathcal{O} \quad \forall i \in I \Rightarrow \bigcap\limits_{i \in I} U_i \in \mathcal{O}$
+\end{enumerate}
+Dann heißt $\mathcal{O}$ \herv{Topologie} auf $X$.
+\end{Definition}
+
+Sei $X$ eine nichtleere Menge.
+
+Triviale Topologie: $\mathcal{O} = \left\{\emptyset, X\right\}$
+
+Diskrete Topologie: $\mathcal{O} = \mathbb{P}\left(X\right)$
+
+Für jeden metrischen Raum $\left(X, d\right)$ induziert $d$ eine Topologie, die nur von der Äquivalenzklasse von $d$ abhängt.
+
+\begin{Definition}
+Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum, $x \in X$.\\
+Eine Teilmenge $B \subset X$ ist \herv{abgeschlossen}, falls $B^C := X\setminus B$ offen ist.
+\end{Definition}
+
+Hinweis: eine Teilmenge $A \subset \left(X, \mathcal{O}\right)$ kann weder abgeschlossen noch offen sein. Als Beispiel sei $\Q \subset \R$ genannt.
+
+\begin{Definition}
+Sei $f: \left(X, \mathcal{O}\right) \rightarrow \left(Y, \mathcal{O}'\right)$ eine Abbildung zwischen topologischen Räumen.\\
+$f$ ist \herv{stetig} genau dann, wenn für alle $V \subset \mathcal{O}'$ das Urbild $f^{-1}\left(V\right)$ offen ist.\\
+$f$ ist ein \herv{Homöomorphismus}, falls f stetig, bijektiv und $f^{-1}$ ebenfalls stetig ist.
+\end{Definition}
+
+\begin{Definition}
+Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum.\\
+$A \subset X$ ist \herv{Umgebung} von x, falls es $U \in \mathcal{O}$ gibt, sodass $x \in U \subset A$.\\
+$f: X \rightarrow Y$ ist \herv{stetig in $x$}, falls für jede Umgebung $V$ von $f\left(x\right) \in Y$ eine Umgebung $U$ von $x$ existiert, sodass $f\left(U\right) \subset V$.
+\end{Definition}
+
+\begin{Lemma}
+Eine Teilmenge $A \subset \left(X, \mathcal{O}\right)$ ist genau dann offen, wenn sie Umgebung jedes ihrer Punkte ist.
+\end{Lemma}
+
+Ist $\left(X, \mathcal{O}\right)$ ein topologischer Raum, $x \in X$ sowie $\mathcal{U}_x := \left\{U \in X|U \text{ Umgebung von } x\right\}$, gilt:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+	\item $x \in U$ für $U \subset \mathcal{U}$
+	\item $U \in \mathcal{U}_x$ und $U \subset V \quad \Rightarrow V \in \mathcal{U}_x$
+	\item $U_1, U_2, \ldots , U_r \in \mathcal{U}_x \quad \Rightarrow \bigcup\limits_{i=1}^r U_i \in \mathcal{U}$
+	\item für jede Umgebung $U \in \mathcal{U}$ gibt es eine Menge $V \subset U$ mit $x \in V$, sodass $V$ Umgebung ist für jedes $y \in V$.
+\label{Def_Umg}
+\end{enumerate}
+Umgekehrt gilt folgender
+\begin{Satz}
+Sei $X$ eine Menge. Für jedes $x \in X$ sei ein System $\mathcal{U}_x$ von nichtleeren Teilmengen gewählt, sodass $\textup{(i) - (iv)}$ erfüllt sind. Dann gibt es genau eine Topologie $\mathcal{O}$ auf $X$, sodass die $\mathcal{O}$-Umgebungen $\mathcal{W}_x$ von $X$ genau die Systeme $\mathcal{U}_x$ sind.
+\end{Satz}
+
+\begin{Definition}
+Sei $X$ eine Menge und $\mathcal{O}_1, \mathcal{O}_2$ Topologien auf X.\\
+$\mathcal{O}_1$ ist \herv{gröber} als $\mathcal{O}_2$, falls $\mathcal{O}_1 \subset \mathcal{O}_2$.\\
+$\mathcal{O}_1$ ist \herv{feiner} als $\mathcal{O}_2$, falls $\mathcal{O}_1 \supset \mathcal{O}_2$.
+\end{Definition}
+
+Beliebige Durchschnitte von Topologien ergeben wieder Topologien, der Schnitt von zwei oder mehr Topologien ist aber im Allgemeinen keine.
+
+Sei $\mathcal{S} \subset \mathbb{P}\left(X\right)$. Dann gibt es genau eine gröbste Topologie auf $X$, die $\mathcal{S}$ enthält: $\mathcal{O}\left(\mathcal{S}\right) := \bigcup\limits_{\substack{\mathcal{O} \text{ Topo.} \\ \mathcal{S} \subset \mathcal{O}}} \mathcal{O}$. Dies ist wohldefiniert, da zumindest $\mathbb{P}\left(X\right)$ eine Topologie mit $\mathcal{S} \subset \mathbb{P}\left(X\right)$ ist.
+
+\begin{Definition}
+Sei $\mathcal{O}$ eine Topologie, $\mathcal{S} \subset \mathcal{O}$, mit $\mathcal{O}\left(\mathcal{S}\right) = \mathcal{O}$. Dann ist $\mathcal{S}$ eine \herv{Subbasis} von $\mathcal{O}$.\\
+$\mathcal{S}$ ist eine \herv{Basis} von $\mathcal{O}$, falls jede offene Menge Vereinigung von Mengen aus $\mathcal{S}$ ist.
+\end{Definition}
+
+\section{Konstruktion neuer Topoogien aus gegebenen}
+Seien $\left(X_1, \mathcal{O}_1\right), \left(X_2, \mathcal{O}_2\right)$ topologische Räume. Dann definiert man auf $X = X_1 \dot{\cup} X_2$ eine Topologie durch ihre Basis $\mathcal{O}_1 \cup \mathcal{O}_2$. Insbesondere sind dann die Inklusionen $\begin{cases} i_1: X_1 \rightarrow X \\ i_2: X_2 \rightarrow X \end{cases}$ beide stetig. Diese Topologie ist die gröbste mit dieser Eigenschaft.
+
+\begin{Definition}
+Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum und $A \subset X$ eine Teilmenge.\\
+Dann heißt $\mathcal{O}_A := \left\{U \subset A|\text{es gibt } V \subset X \text{ offen}: V \cap A = U\right\}$ \herv{Teilraumtopologie}.
+\end{Definition}
+
+Seien $\left(X_1, \mathcal{O}_1\right), \left(X_2, \mathcal{O}_2\right)$ topologische Räume und $X = X_1 \times X_2$.\\
+Dann ist $\mathcal{O}_X := \left\{W|\text{für } \left(x_1, x_2\right) \in W \text{ gibt es Umgebungen } U_1 \subset X_1, U_2 \subset X_2 \text{ von } x_1 \text{ bzw. } x_2 \text{, sodass } U_1 \times U_2 \subset W\right\}$ die gröbste Topologie, sodass die Projektionen $\begin{cases} \pi_1 : X_1 \times X_2 \rightarrow X_1 \\ \pi_2 : X_1 \times X_2 \rightarrow X_2 \end{cases}$ beide stetig sind.
+
+Sei $X_{i, i \in I}$ eine beliebige Anzahl an topologischen Räumen, $X = \prod\limits_{i \in I}{X_i}$. Die Produkttopologie $\mathcal{O}_X$ auf $\prod\limits_{i \in I}{X_i}$ ist die größte Topologie, sodass die Projektionen $\pi_j : \prod\limits_{i \in I}{X_i} \rightarrow X_j \quad \forall j \in I$ stetig sind.
+
+\end{document}
