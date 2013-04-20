@@ -217,7 +217,7 @@ $\mathcal{O}_1$ ist \herv{gröber} als $\mathcal{O}_2$, falls $\mathcal{O}_1 \sub
 $\mathcal{O}_1$ ist \herv{feiner} als $\mathcal{O}_2$, falls $\mathcal{O}_1 \supset \mathcal{O}_2$.
 \end{Definition}
 
-Beliebige Durchschnitte von Topologien ergeben wieder Topologien, der Schnitt von zwei oder mehr Topologien ist aber im Allgemeinen keine.
+Beliebige Durchschnitte von Topologien ergeben wieder Topologien, die Vereinigung von zwei oder mehr Topologien ist aber im Allgemeinen keine.
 
 Sei $\mathcal{S} \subset \mathbb{P}\left(X\right)$. Dann gibt es genau eine gröbste Topologie auf $X$, die $\mathcal{S}$ enthält: $\mathcal{O}\left(\mathcal{S}\right) := \bigcup\limits_{\substack{\mathcal{O} \text{ Topo.} \\ \mathcal{S} \subset \mathcal{O}}} \mathcal{O}$. Dies ist wohldefiniert, da zumindest $\mathbb{P}\left(X\right)$ eine Topologie mit $\mathcal{S} \subset \mathbb{P}\left(X\right)$ ist.
 
@@ -226,7 +226,7 @@ Sei $\mathcal{O}$ eine Topologie, $\mathcal{S} \subset \mathcal{O}$, mit $\mathc
 $\mathcal{S}$ ist eine \herv{Basis} von $\mathcal{O}$, falls jede offene Menge Vereinigung von Mengen aus $\mathcal{S}$ ist.
 \end{Definition}
 
-\section{Konstruktion neuer Topoogien aus gegebenen}
+\section{Konstruktion neuer Topologien aus gegebenen}
 Seien $\left(X_1, \mathcal{O}_1\right), \left(X_2, \mathcal{O}_2\right)$ topologische Räume. Dann definiert man auf $X = X_1 \dot{\cup} X_2$ eine Topologie durch ihre Basis $\mathcal{O}_1 \cup \mathcal{O}_2$. Insbesondere sind dann die Inklusionen $\begin{cases} i_1: X_1 \rightarrow X \\ i_2: X_2 \rightarrow X \end{cases}$ beide stetig. Diese Topologie ist die gröbste mit dieser Eigenschaft.
 
 \begin{Definition}
@@ -235,10 +235,69 @@ Dann heißt $\mathcal{O}_A := \left\{U \subset A|\text{es gibt } V \subset X \tex
 \end{Definition}
 
 Seien $\left(X_1, \mathcal{O}_1\right), \left(X_2, \mathcal{O}_2\right)$ topologische Räume und $X = X_1 \times X_2$.\\
-Dann ist $\mathcal{O}_X := \left\{W|\text{für } \left(x_1, x_2\right) \in W \text{ gibt es Umgebungen } U_1 \subset X_1, U_2 \subset X_2 \text{ von } x_1 \text{ bzw. } x_2 \text{, sodass } U_1 \times U_2 \subset W\right\}$ die gröbste Topologie, sodass die Projektionen $\begin{cases} \pi_1 : X_1 \times X_2 \rightarrow X_1 \\ \pi_2 : X_1 \times X_2 \rightarrow X_2 \end{cases}$ beide stetig sind.
+Dann ist $\mathcal{O}_X := \left\{W|\right.$ für $\left(x_1, x_2\right) \in W$ gibt es Umgebungen $U_1 \subset X_1, U_2 \subset X_2 $ von $x_1$ bzw. $x_2$, sodass $\left.U_1 \times U_2 \subset W\right\}$ die gröbste Topologie, sodass die Projektionen $\begin{cases} \pi_1 : X_1 \times X_2 \rightarrow X_1 \\ \pi_2 : X_1 \times X_2 \rightarrow X_2 \end{cases}$ beide stetig sind.
 
-Sei $X_{i, i \in I}$ eine beliebige Anzahl an topologischen Räumen, $X = \prod\limits_{i \in I}{X_i}$. Die Produkttopologie $\mathcal{O}_X$ auf $\prod\limits_{i \in I}{X_i}$ ist die größte Topologie, sodass die Projektionen $\pi_j : \prod\limits_{i \in I}{X_i} \rightarrow X_j \quad \forall j \in I$ stetig sind.
+Sei $X_{i, i \in I}$ eine beliebige Anzahl an topologischen Räumen, $X = \prod\limits_{i \in I}{X_i}$. Die Produkttopologie $\mathcal{O}_X$ auf $\prod\limits_{i \in I}{X_i}$ ist die gröbste Topologie, sodass die Projektionen $\pi_j : \prod\limits_{i \in I}{X_i} \rightarrow X_j \quad \forall j \in I$ stetig sind.
 
-Hilfe, warum muss ICH das machen???
+Also enthält $\mathcal{O}_x$ die Mengen $\pi_j^{-1}\left(U_j\right)$ für $U_j \subset X_j$ offen und endliche Schnitte solcher Mengen, sowie beliebige Vereinigungen endlicher Schnitte.
+
+\begin{Definition}
+Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum und $\sim$ eine Äquivalentrelation auf $X$.\\
+Die Quotiententopologie auf $X/_\sim$ ist die feinste Topologie, sodass $\pi : X \rightarrow X/_\sim$ stetig ist.
+D.h. $A \subset X/_\sim$ ist genau dann offen, falls $\pi^{-1}\left(A\right)$ offen ist.
+\end{Definition}
+
+\begin{Definition}
+Eine Abbildung zwischen topologischen Räumen $f: X \rightarrow Y$ ist \herv{offen} (bzw. \herv{abgeschlossen}), falls das Bild jeder offenen (bzw. abgeschlossenen) Teilmenge selbst offen (bzw. abgeschlossen) ist.
+\end{Definition}
+
+\subsubsection{Verkleben von topologischen Räumen}
+Seien $X, X'$ topologische Räume, $f: X \supset Y \rightarrow X'$ eine Abbildung.
+Auf $X \cupdot X'$ definert man $\sim$ durch $w \sim z \Leftrightarrow \begin{cases} w = z \\ w, z \in Y \text{ und } f(w) = f(z) \\ w \in Y, z \in X' \text{ und } f(w) = z \\ w \in X', z \in Y \text{ und } f(z) = w\end{cases}$
+
+\begin{Definition}
+$X \cupdot X'/_\sim =: X \cup_f X'$ ist der durch Zusammenkleben von $X, X'$ mit $f$ entstandene Raum.
+\end{Definition}
+
+\section{Neue Teilmengen aus alten}
+\begin{Definition}
+Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum, $A \subset X$.\\
+$\AA$ (innerer Kern von $A$) ist die größte offene Teilmenge von $A$. $\AA = \bigcup\limits_{B \subset A \text{ offen}} B$\\
+$\bar{A}$ (Abschluss von $A$) ist die kleinste abgeschlossene Menge, die $A$ enthält. $\bar{A} = \bigcap\limits_{B \supset A \text{ abg.}} B$\\
+$x \in X$ ist ein Berührpunkt von $A$, falls jede Umgebung $U$ von $x$ $A$ schneidet.\\
+$x \in X$ ist ein Randpunkt von $A$, falls $x$ ein Berührpunkt von $A$ und $X\setminus A$ ist.\\
+$\delta A$ ist die Menge aller Randpunkte von $A$.
+\end{Definition}
+
+\begin{Lemma}
+$\delta A = \bar{A}\setminus\AA = \bar{A} \cap \left(X\setminus\AA\right)$ ist abgeschlossen.\\
+$x \in \bar{A} \Leftrightarrow$ für jede offene Umgebung $U$ von $x$ ist $A\cap U \neq \emptyset$\\
+Insbesondere: $x \in  \bar{A} \Rightarrow x$ ist Berührpunkt von $A$.\\
+$x \in \AA \Leftrightarrow x$ ist kein Berührpunkt von $X\setminus A$
+\end{Lemma}
+
+\begin{Definition}
+Sei $X$ ein topologischer Raum und $\left(x_n\right)_{n \in \N}$ eine Folge in $X$. Dann ist $x \in X$ ein Häufungspunkt der Folge, falls jede Umgebung von $x$ unendlich viele Folgenglieder enthält.
+\end{Definition}
+
+Ist $x$ Häufungspunkt von $\left(x_n\right)$. Dann gibt es im Allgemeinen keine Teilfolge von $x_n$, die gegen $x$ konvergiert.
+
+\begin{Definition}
+Ein topologischer Raum erfüllt das \herv{1. Abzählbarkeitsaxiom}, falls für jedes $x \in X$ eine Menge $U_{n, n \in \N}$ von Umgebungen existiert, sodass für $V$, beliebige Umgebung von $x$, ein $n(V)$ existiert, sodass $U_{n(V)} \subset V$.
+\end{Definition}
+
+\begin{Definition}
+Ein topologischer Raum erfüllt das \herv{2. Abzählbarkeitsaxiom}, falls es eine abzählbare Basis der Topologie gibt.
+\end{Definition}
+
+\begin{Satz}
+Sei $f: X \rightarrow Y$ eine Abbildung. Äquivalent sind:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $f$ ist stetig
+\item $V \subset Y$ abgeschlossen $\Rightarrow f^{-1}(V) \subset U$ abgeschlossen
+\item $f\left(\bar{A}\right) \subset \bar{f\left(A\right)}$ für alle $A \subset X$.
+\end{enumerate}
+\end{Satz}
 
 \end{document}
