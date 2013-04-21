@@ -93,6 +93,7 @@ Sei $\left( X, d\right)$ eine Menge mit $d: X\times X \rightarrow \R$, sodass $\
 \begin{split}
 &d\left(x, y\right)\ \geq 0\\
 &d\left(x, y\right)\ = 0 \Leftrightarrow x = y\\
+&d\left(x, y\right)\ =\ d\left(y, x\right)\\
 &d\left(x, z\right)\ \geq d\left(x, y\right)\ + d\left(y, z\right)\
 \end{split}
 \end{equation*}
@@ -297,6 +298,82 @@ Sei $f: X \rightarrow Y$ eine Abbildung. Äquivalent sind:
 \item $f$ ist stetig
 \item $V \subset Y$ abgeschlossen $\Rightarrow f^{-1}(V) \subset U$ abgeschlossen
 \item $f\left(\bar{A}\right) \subset \bar{f\left(A\right)}$ für alle $A \subset X$.
+\end{enumerate}
+\end{Satz}
+
+\section{Zusammenhängende Räume}
+\begin{Definition}
+Ein topologischer Raum $\left(X, \mathcal{O}\right)$ heißt \herv{zusammenhängend}, falls $X$ nicht in nichtleere disjunkte offene Teilmengen zerlegt werden kann, d.h. $X = U_1 \cup U_2;\ U_1, U_2$ offen, $U_1 \cap U_2 = \emptyset \Rightarrow U_1 = \emptyset$ oder $U_2 = \emptyset$.
+\end{Definition}
+
+\begin{Satz}
+Sei die Abbildung $f: X \rightarrow Y$ stetig, $X$ zusammenhängend. Dann ist $f(X)$ zusammenhängend (in der Teilraumtopologie von Y).
+Insbesondere sind Quotienten zusammenhängender Räume zusammenhängend.
+\end{Satz}
+
+\begin{Satz}
+Sei $A \subset X$ zusammenhängend. Dann ist auch $\bar{A}$ zusammenhängend und, falls $A \subset B \subset \bar{A}$, auch $B$.
+\end{Satz}
+
+\begin{Satz}
+Sei $X$ ein topologischer Raum, $I$ eine beliebige Indexmenge und $X_{i, i \in I} \subset X$ zusammenhängende Teilräume mit $\bigcup\limits_{i \in I} X_i = X,\ \bigcap\limits_{i \in I} \neq \emptyset$. Dann ist $X$ zusammenhängend.
+\end{Satz}
+
+\begin{Korollar}
+Sei $x \in X$ ein Punkt in einem topologischen Raum $X$. Dann gibt es eine größte zusammenhängende Teilmenge $C_x \in X$, sodass $x \in C_x$ und $C_x \in X$ abgeschlossen ist.
+\end{Korollar}
+
+\begin{Definition}
+$C_x$ ist die \herv{Zusammenhangskomponente} von $x \in X$.
+\end{Definition}
+
+\begin{Definition}
+Ein topologischer Raum $X$ heißt \herv{wegzusammenhängend}, falls für je zwei Punkte $x_0, x_1 \in X$ eine stetige Abbildung $\gamma : \left[0, 1\right] \rightarrow X$ (``Weg'') mit $\gamma(0) = x_0,\ \gamma(1) = x_1$ existiert.
+\end{Definition}
+
+\begin{Satz}
+Sei $X$ ein topologischer Raum. $X$ wegzusammenhängend $\Rightarrow$ $X$ zusammenhängend. 
+\end{Satz}
+
+\begin{Bemerkung}
+Sei $X$ ein topologischer Raum, $I$ eine beliebige Indexmenge und $X_{i, i \in I} \subset X$ wegzusammenhängende Teilräume mit $\bigcup\limits_{i \in I} X_i = X,\ \bigcap\limits_{i \in I} \neq \emptyset$. Dann ist $X$ wegzusammenhängend.
+\end{Bemerkung}
+
+\begin{Definition}
+Ein topologischer Raum $X$ heißt \herv{lokal zusammenhängend}, falls für jeden Punkt $x$ jede Umgebung von $x$ eine offene zusammenhängende Umgebung von $x$ enthält.
+\end{Definition}
+
+Nicht jeder (weg-)zusammenhängender topologischer Raum ist auch lokal zusammenhängend.
+
+\begin{Satz}
+$X$ lokal zusammenhängender topologischer Raum $\Leftrightarrow$ jede Zusammenhangskomponente in jeder offenen Menge ist offen.
+\end{Satz}
+
+\begin{Korollar}
+$X$ lokal zusammenhängender topologischer Raum $\Rightarrow$ Jede Zusammenhangskomponente ist offen.
+\end{Korollar}
+
+\section{Trennungsaxiome}
+\begin{Definition}
+Ein topologischer Raum $X$ ist \herv{Hausdorff'sch} $\left(T_2\right)$, falls für je zwei Punkte $x \neq x'$ offene Umgebungen $U, U', x \in U, x' \in U'$ existieren, sodass $U \cap U' = \emptyset$.
+\end{Definition}
+
+Nutzen der Hausdorff'sch-Eigenschaft: Jede konvergente Folge (Netz, Filter) hat genau einen Grenzwert.
+
+\begin{Satz}
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Teilräume von $T_2$-Räumen sind $T_2$-Räume.
+\item Produkträume $\prod\limits_{i \in I} X_i$ sind genau dann $T_2$-Räume, wenn für alle $i \in I$ $X_i$ $T_2$-Raum ist.
+\item Quotienten von $T_2$-Räumen sind im Allgemeinen keine $T_2$-Räume.
+\end{enumerate}
+\end{Satz}
+
+\begin{Satz}
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Ein topologischer Raum $X$ ist Hausdorff'sch genau dann, wenn $\Delta := \left\{\left(x, x\right) | x \in X \right\} \subset X \times X$ abgeschlossen ist.
+\item Sei die Abbildung $f: X \rightarrow Y$ (zwischen topologischen Räumen) stetig und $Y$ Hausdorff'sch. Dann ist $A = \left\{\left(x_1, x_2\right) \in X \times X |\ f\left(x_1\right) = f\left(x_2\right)\right\}$ abgeschlossen.
 \end{enumerate}
 \end{Satz}
 
