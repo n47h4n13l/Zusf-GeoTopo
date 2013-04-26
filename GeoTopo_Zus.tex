@@ -263,7 +263,7 @@ $X \cupdot X'/_\sim =: X \cup_f X'$ ist der durch Zusammenkleben von $X, X'$ mit
 \section{Neue Teilmengen aus alten}
 \begin{Definition}
 Sei $\left(X, \mathcal{O}\right)$ ein topologischer Raum, $A \subset X$.\\
-$\AA$ (innerer Kern von $A$) ist die größte offene Teilmenge von $A$. $\AA = \bigcup\limits_{B \subset A \text{ offen}} B$\\
+$\mathring{A}$ (innerer Kern von $A$) ist die größte offene Teilmenge von $A$. $\mathring{A} = \bigcup\limits_{B \subset A \text{ offen}} B$\\
 $\bar{A}$ (Abschluss von $A$) ist die kleinste abgeschlossene Menge, die $A$ enthält. $\bar{A} = \bigcap\limits_{B \supset A \text{ abg.}} B$\\
 $x \in X$ ist ein Berührpunkt von $A$, falls jede Umgebung $U$ von $x$ $A$ schneidet.\\
 $x \in X$ ist ein Randpunkt von $A$, falls $x$ ein Berührpunkt von $A$ und $X\setminus A$ ist.\\
@@ -271,10 +271,10 @@ $\delta A$ ist die Menge aller Randpunkte von $A$.
 \end{Definition}
 
 \begin{Lemma}
-$\delta A = \bar{A}\setminus\AA = \bar{A} \cap \left(X\setminus\AA\right)$ ist abgeschlossen.\\
+$\delta A = \bar{A}\setminus\mathring{A} = \bar{A} \cap \left(X\setminus\mathring{A}\right)$ ist abgeschlossen.\\
 $x \in \bar{A} \Leftrightarrow$ für jede offene Umgebung $U$ von $x$ ist $A\cap U \neq \emptyset$\\
 Insbesondere: $x \in  \bar{A} \Rightarrow x$ ist Berührpunkt von $A$.\\
-$x \in \AA \Leftrightarrow x$ ist kein Berührpunkt von $X\setminus A$
+$x \in \mathring{A} \Leftrightarrow x$ ist kein Berührpunkt von $X\setminus A$
 \end{Lemma}
 
 \begin{Definition}
@@ -284,7 +284,7 @@ Sei $X$ ein topologischer Raum und $\left(x_n\right)_{n \in \N}$ eine Folge in $
 Ist $x$ Häufungspunkt von $\left(x_n\right)$. Dann gibt es im Allgemeinen keine Teilfolge von $x_n$, die gegen $x$ konvergiert.
 
 \begin{Definition}
-Ein topologischer Raum erfüllt das \herv{1. Abzählbarkeitsaxiom}, falls für jedes $x \in X$ eine Menge $U_{n, n \in \N}$ von Umgebungen existiert, sodass für $V$, beliebige Umgebung von $x$, ein $n(V)$ existiert, sodass $U_{n(V)} \subset V$.
+Ein topologischer Raum erfüllt das \herv{1. Abzählbarkeitsaxiom}, falls für jedes $x \in X$ eine Menge $\left(U_n\right)_{n \in \N}$ von Umgebungen (von $x$) existiert, sodass für $V$, beliebige Umgebung von $x$, ein $n(V)$ existiert, sodass $U_{n(V)} \subset V$.
 \end{Definition}
 
 \begin{Definition}
@@ -377,4 +377,90 @@ Nutzen der Hausdorff'sch-Eigenschaft: Jede konvergente Folge (Netz, Filter) hat 
 \end{enumerate}
 \end{Satz}
 
+\begin{Definition}
+Sei $X$ ein topologischer Raum. $A \subset X$ heißt \herv{dicht}, wenn $\bar{A} = X$
+\end{Definition}
+
+\begin{Satz}
+Seien $f, g: X \rightarrow Y$ stetige Abbildungen zwischen topologischen Räumen und $Y$ Hausdorff'sch. Für $A \subset X$ gilt dann: $f = g \Leftrightarrow f|_A = g|_A$
+\end{Satz}
+
+\begin{Definition}
+Ein topologischer Raum $X$ hat die $T_1$-Eigenschaft, wenn für $x \neq x' \in X$ Umgebungen $U$ von $x$ und $U'$ von $x'$ existieren, sodass $x \in X$, $x' \in X'$, aber $x \notin U'$, $x' \notin U$.
+\end{Definition}
+
+\begin{Satz}
+Für einen topologischen Raum $X$ sind folgende Aussagen äquivalent:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $X$ hat die $T_1$-Eigenschaft
+\item jeder Punkt ist abgeschlossen
+\item $\forall A \subset X$ gilt $A = \bigcup\limits_{U \supset A\text{, offen}} U$
+\end{enumerate}
+\end{Satz}
+
+\section{Kompaktheit}
+\begin{Definition}
+Ein topologischer Raum $X$ ist \herv{kompakt}, falls für jede offene Überdeckungung von $X$ eine endliche Teilüberdeckung existiert, d.h. für $X = \bigcup\limits_{i \in I} U_i$, $U_i$ offen für alle $i \in I$ einer beliebigen Indexmenge, eine endliche Teilmenge $\{i_1, \cdots i_r\}$ existiert, sodass $X = U_{i_1} \cup \cdots \cup U_{i_r}$.
+\end{Definition}
+
+\begin{Satz}
+$X$ kompakter topologischer Raum und $f: X \rightarrow \R$ stetig $\Rightarrow$ $f$ ist beschränkt.
+\end{Satz}
+
+\begin{Satz}
+$[0, 1]$ ist kompakt mit der Standarttopologie.
+\end{Satz}
+
+\begin{Lemma}
+Sei $\left(U_i\right)_{i \in I}$ eine offene Überdeckung von $[0, 1]$. Dann existiert ein $\delta > 0$, sodass es für jedes Interfall der Länge $\delta$ ein $i \in I$ gibt, für das $U_i$ dieses Intervall ganz enthält.
+\end{Lemma}
+
+\begin{Satz}
+Seien $X, Y$ topologische Räume, $X$ kompakt und $f: X \rightarrow Y$ eine stetige Abbildung. Dann ist $f(X)$ kompakt (in der Teilraumtopologie von $Y$).
+\end{Satz}
+
+\begin{Korollar}
+Quotienten kompakter topologischer Räume sind kompakt.
+\end{Korollar}
+
+\begin{Satz}
+Sei $X$ kompakter topologischer Raum, und $A \subset X$ abgeschlossen. Dann ist $A$ kompakt (in der Teilraumtopologie).
+\end{Satz}
+
+\begin{Satz}
+\label{Prod_komp}
+Seien $X, Y$ kompakte topologische Räume. Dann ist $X \times Y$ kompakt.
+\end{Satz}
+
+\begin{Korollar}
+Endliche Produkte kompakter topologischer Räume sind kompakt.
+\end{Korollar}
+
+Allgemein gilt sogar der
+\begin{Satz} (von Tychonoff, 1930)\\
+Sei $\left(X_i\right)_{i \in I}$ eine beliebig große Familie kompakter topologischer Räume. Dann ist $\prod\limits_{i \in I}{X_i}$ kompakt.
+\end{Satz}
+Dieser ist jedoch äquivalent zum umstrittenen Auswahlaxiom (Axiom of Choice):\\
+Sei $\left(B_i\right)_{i \in I}$ eine beliebig große Familie nichtleerer Mengen.
+Dann gibt es $F: I \rightarrow \bigcup\limits_{i \in I} B_i$, sodass $F(i) \in B_i$.
+
+\begin{Bemerkung}
+Ist für zwei topologische Räume $X, Y$ der Produktraum $X \times Y$ kompakt, so sind schon $X$, $Y$ kompakt. Dies gilt ebenfalls für unendliche Produkte.
+\end{Bemerkung}
+
+\begin{Satz}
+Sei $X$ ein Hausdorffraum, $A \subset X$ kompakt. Dann ist $A$ abgeschlossen.
+\end{Satz}
+
+\begin{Bemerkung}
+Ist $X$ kompakter Hausdorffraum, $A \subset X$ kompakt bzw. abgeschlossen und $x \in X\setminus A$. Dann gibt es eine offene Umgebung $U$ von $x$ und $V \supset A$ offen, sodass $U \cap V = \emptyset$. Ist weiter $B \subset X$ abgeschlossen bzw. kompakt, $A \cap B = \emptyset$, gibt es $V_1 \supset A$ und $V_2 \supset B$ offen mit $V_1 \cap V_2 = \emptyset$. Das heißt, in kompakten Hausdorffräumen kann man abgeschlossene Mengen von Punkten bzw. einer anderen disjunkten abgeschlossenen Menge trennen.
+\end{Bemerkung}
+
+\section{Probleme/Nutzen von Folgen}
+\begin{Definition}
+Eine Abbildung $f: X \rightarrow Y$ ist \herv{folgenstetig}, falls aus $x_n \rightarrow x$ in $X$ folgt, dass $f\left(x_n\right) \rightarrow f(x)$ in $Y$.
+\end{Definition}
+
 \end{document}
+
