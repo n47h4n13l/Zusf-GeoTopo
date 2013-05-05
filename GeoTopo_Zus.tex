@@ -297,7 +297,7 @@ Sei $f: X \rightarrow Y$ eine Abbildung. Äquivalent sind:
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \item $f$ ist stetig
 \item $V \subset Y$ abgeschlossen $\Rightarrow f^{-1}(V) \subset U$ abgeschlossen
-\item $f\left(\bar{A}\right) \subset \bar{f\left(A\right)}$ für alle $A \subset X$.
+\item $f\left(\bar{A}\right) \subset \overline{f\left(A\right)}$ für alle $A \subset X$.
 \end{enumerate}
 \end{Satz}
 
@@ -395,7 +395,7 @@ Für einen topologischen Raum $X$ sind folgende Aussagen äquivalent:
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \item $X$ hat die $T_1$-Eigenschaft
 \item jeder Punkt ist abgeschlossen
-\item $\forall A \subset X$ gilt $A = \bigcup\limits_{U \supset A\text{, offen}} U$
+\item $\forall A \subset X$ gilt $A = \bigcap\limits_{U \supset A\text{, offen}} U$
 \end{enumerate}
 \end{Satz}
 
@@ -461,6 +461,80 @@ Ist $X$ kompakter Hausdorffraum, $A \subset X$ kompakt bzw. abgeschlossen und $x
 \begin{Definition}
 Eine Abbildung $f: X \rightarrow Y$ ist \herv{folgenstetig}, falls aus $x_n \rightarrow x$ in $X$ folgt, dass $f\left(x_n\right) \rightarrow f(x)$ in $Y$.
 \end{Definition}
+
+\begin{Satz}
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Sei $f: X \rightarrow Y$ eine stetige Abbildung zwischen topologischen Räumen. Dann ist $f$ folgenstetig.
+\item Sei $f: X \rightarrow Y$ eine folgenstetige Abbildung zwischen topologischen Räumen und $X$ erfülle das 1. Abzählbarkeitsaxiom. Dann ist $f$ stetig.
+\end{enumerate}
+\end{Satz}
+
+\begin{Lemma}
+Sei $X$ ein topologischer Raum. Dann sind äquivalent:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $X$ ist kompakt.
+\item Seien $\left(A_i\right)_{i \in I}$ abgeschlossen für eine beliebige Indexmenge I, sodass $\bigcap\limits_{i \in I} A_i = \emptyset$. Dann existieren $i_1, \ldots i_r \in I, r \in \N$ mit $\bigcap\limits_{j = 1}^r A_{i_j} = \emptyset$
+\end{enumerate}
+\end{Lemma}
+
+\begin{Satz}
+Sei $X$ ein kompakter topologischer Raum und $\left(x_n\right)_{n \in \N}$ eine Folge auf $X$. Dann hat $\left(x_n\right)$ einen Häufungspunkt.
+\end{Satz}
+
+\begin{Definition}
+Ein topologischer Raum ist \herv{folgenkompakt}, wenn jede Folge eine konvergente Teilfolge hat.
+\end{Definition}
+
+$\mathbb{P}\left(\N\right)$ ist kompakt (Tychonoff), aber nicht folgenkompakt. Es gibt auch topologische Räume, die folgenkompakt, aber nicht kompakt sind.
+
+\begin{Satz}
+Sei $X$ ein kompakter topologischer Raum, der das 1. Abzählbarkeitsaxiom erfüllt. Dann ist $X$ folgenkompakt.
+\end{Satz}
+
+\begin{Satz}
+Sei $\left(X, d\right)$ ein metrischer Raum. $X$ kompakt $\Leftrightarrow$ $X$ folgenkompakt.
+\end{Satz}
+
+\section{Reguläre/Normale Räume und Urysohns Lemma}
+Neben $T_1$ und $T_2$ gibt es weitere Trennungsaxiome. Die Literatur ist jedoch uneinheitlich.
+\begin{Definition}
+Ein topologischer Raum $X$ hat die $T_3$-Eigenschaft, wenn für alle $x \in X$, $A \subset X$ abgeschlossen mit $x \notin A$ eine Umgebung $U_x$ von $x$ und $U_A$ offen mit $A \subset U_A$ gibt, sodass $U_x \cap U_A = \emptyset$.\\
+Ein topologischer Raum $X$ hat die $T_1$-Eigenschaft, wenn für alle disjunkten $A, B \subset X$, abgeschlossen, $U_A$ und $U_B$ offen existieren, sodass $A \subset U_A$, $B \subset U_B$ und $U_A \cap U_B = \emptyset$.\\
+Ein topologischer Raum $X$ hat die $T_{3\ 1/2}$-Eigenschaft, wenn es für alle $x \in X$ und $A \subset X$ abgeschlossen mit $x \notin A$ eine stetige Funktion $f: X \rightarrow [0,1]$ gibt mit $f(x) = 1$ und $f|_A \equiv 0$.
+\end{Definition}
+
+$T_2 \Rightarrow T_1$
+
+$T_1 \wedge T_3 \Rightarrow T_2$
+
+\begin{Definition}
+Ein topologischer Raum heißt \herv{regulär}, falls er die $T_1$- und die $T_3$-Eigenschaft hat.\\
+Ein topologischer Raum heißt \herv{vollständig regulär}, falls er die $T_{3\ 1/2}$- und die $T_1$-Eigenschaft hat.\\
+Ein topologischer Raum heißt \herv{normal}, falls er die $T_1$- und die $T_4$-Eigenschaft hat.
+\end{Definition}
+
+Kompakte Hausdorffräume sind regulär und normal.
+
+\begin{Lemma} (von Urysohn)\\
+Erfülle $X$ die $T_4$-Eigenschaft und seien $A, B \subset X$ abgeschlossen und disjunkt. Dann existiert eine stetige Funktion $f: X \rightarrow [0,1]$, so dass $f|_A \equiv 1$ und $f|_B \equiv 0$.
+\end{Lemma}
+
+\begin{Satz} (Fortsetzungssatz von Tietze)\\
+Erfülle $X$ die $T_4$-Eigenschaft und sei $A \subset X$ abgeschlossen. Weiterhin sei $f: A \rightarrow [a,b]$ stetig. Dann existiert eine stetige Fortsetzung $F: X \rightarrow [a, b]$ und $F|_A = f$.
+\end{Satz}
+
+\begin{Korollar}
+Erfülle $X$ die $T_4$-Eigenschaft, sei $A \subset X$ abgeschlossen und $f: A \rightarrow \R$ stetig. Dann gibt es eine stetige Fortsetzung $F: X \rightarrow \R$ mit $F|_A = f$.
+\end{Korollar}
+
+\begin{Definition}
+Sei $X$ ein topologischer Raum und $\left(U_i\right)_{i \in I}$ eine offene Überdeckung von $X$.
+Seit weiter $\tau_{\lambda}: X \rightarrow [0, 1], \lambda \in \Lambda$ eine Sammlung stetiger Funktionen, die \herv{lokal endlich} ist, d.h. für jedes $x \in X$ gibt es eine offene Umgebung $V(x)$, sodass $V(x) \cap \text{Tr}\left(\tau_{\lambda}\right) = \emptyset$ für alle bis auf endlich viele der $\lambda \in \Lambda$, und $\sum\limits_{\lambda}{\tau_{\lambda}}(x) \equiv 1$. Dann ist $\left(\tau_{\lambda}\right)_{\lambda \in \Lambda}$ eine \herv{Zerlegung der 1}.\\
+Sie ist $\left(U_i\right)_{i \in I}$ \herv{untergeordnet}, falls $\forall \lambda\ \exists i\left(\lambda\right): \text{Tr}\left(\tau_{\lambda}\right) \subset U_{i\left(\lambda\right)}$.
+\end{Definition}
+
 
 \end{document}
 
