@@ -94,7 +94,7 @@ Sei $\left( X, d\right)$ eine Menge mit $d: X\times X \rightarrow \R$, sodass $\
 &d\left(x, y\right)\ \geq 0\\
 &d\left(x, y\right)\ = 0 \Leftrightarrow x = y\\
 &d\left(x, y\right)\ =\ d\left(y, x\right)\\
-&d\left(x, z\right)\ \geq d\left(x, y\right)\ + d\left(y, z\right)\
+&d\left(x, z\right)\ \leq d\left(x, y\right)\ + d\left(y, z\right)\
 \end{split}
 \end{equation*}
 Dann heißt $\left(X, d\right)$ \herv{metrischer Raum}.
@@ -220,7 +220,7 @@ $\mathcal{O}_1$ ist \herv{feiner} als $\mathcal{O}_2$, falls $\mathcal{O}_1 \sup
 
 Beliebige Durchschnitte von Topologien ergeben wieder Topologien, die Vereinigung von zwei oder mehr Topologien ist aber im Allgemeinen keine.
 
-Sei $\mathcal{S} \subset \mathbb{P}\left(X\right)$. Dann gibt es genau eine gröbste Topologie auf $X$, die $\mathcal{S}$ enthält: $\mathcal{O}\left(\mathcal{S}\right) := \bigcup\limits_{\substack{\mathcal{O} \text{ Topo.} \\ \mathcal{S} \subset \mathcal{O}}} \mathcal{O}$. Dies ist wohldefiniert, da zumindest $\mathbb{P}\left(X\right)$ eine Topologie mit $\mathcal{S} \subset \mathbb{P}\left(X\right)$ ist.
+Sei $\mathcal{S} \subset \mathbb{P}\left(X\right)$. Dann gibt es genau eine gröbste Topologie auf $X$, die $\mathcal{S}$ enthält: $\mathcal{O}\left(\mathcal{S}\right) := \bigcap\limits_{\substack{\mathcal{O} \text{ Topo.} \\ \mathcal{S} \subset \mathcal{O}}} \mathcal{O}$. Dies ist wohldefiniert, da zumindest $\mathbb{P}\left(X\right)$ eine Topologie mit $\mathcal{S} \subset \mathbb{P}\left(X\right)$ ist.
 
 \begin{Definition}
 Sei $\mathcal{O}$ eine Topologie, $\mathcal{S} \subset \mathcal{O}$, mit $\mathcal{O}\left(\mathcal{S}\right) = \mathcal{O}$. Dann ist $\mathcal{S}$ eine \herv{Subbasis} von $\mathcal{O}$.\\
@@ -535,6 +535,45 @@ Seit weiter $\tau_{\lambda}: X \rightarrow [0, 1], \lambda \in \Lambda$ eine Sam
 Sie ist $\left(U_i\right)_{i \in I}$ \herv{untergeordnet}, falls $\forall \lambda\ \exists i\left(\lambda\right): \text{Tr}\left(\tau_{\lambda}\right) \subset U_{i\left(\lambda\right)}$.
 \end{Definition}
 
+\begin{Definition}
+(Dieudonn$\acute{e}$)\\
+Ein Hausdorffraum $X$ ist \herv{parakompakt}, wenn für jede offene Überdeckung $\left(U_i\right)_{i \in I}$ eine lokal endliche Verfeinerung $\left(V_j\right)_{j \in J}$ existiert.
+D.h. für alle $x \in X$ gibt es $C_x$, offene Umgebung von $x$, sodass $C_x \cap V_j = \emptyset$ für fast alle $j \in J$ (lokal endlich), $\left(V_j\right)$ ist wieder eine offene Überdeckung und es gibt für alle $j \in J$ ein $i \in I$ mit $U_i \supset V_j$ (Verfeinerung).
+\end{Definition}
+
+Kompakte Räume und CW-Komplexe sind parakompakt.
+CW-Komplexe sind parakompakt.
+
+\begin{Satz}
+(A. Stone, 1948)\\
+Metrisierbare Räume sind parakompakt.
+\end{Satz}
+
+\begin{Lemma}
+Parakompakte Räume sind normal.
+\end{Lemma}
+
+\begin{Satz}
+Ein Hausdorffraum $X$ ist genau dann parakompakt, wenn zu jeder offenen Überdeckung von $X$ eine Zerlegung der 1 existiert.
+\end{Satz}
+
+\newpage
+\section{Homotopien, Fundamentalgruppe und Überlagerungen}
+Seien $X, Y$ topologische Räume und $f, g: X \rightarrow Y$ stetige Abbildungen.
+
+\begin{Definition}
+$f$ ist \herv{homotop} to $g$ ($f \cong g$), wenn eine stetige Abbildung $H: X \times [0,1] \rightarrow Y$ existiert, sodass $H(x, 0) = f(x)$ und $H(x, 1) = g(x)$.
+\end{Definition}
+
+Dies definiert eine Äquivalenzrelation auf $\mathbb{C}\left(X, Y\right)$, dh. der Menge der stetigen Abbildungen von $X$ nach $Y$.
+
+\begin{Lemma}
+Sei $X$ ein topologischer Raum und seien $A_1, A_2, \ldots A_n$ abgeschlossen, sodass $\bigcup\limits_{i=1}^n = A$.
+Dann ist $f: X \rightarrow Y$ stetig, genau dann wenn $f|_{A_i}: A_i \rightarrow Y$ stetig ist für alle $1 \leq i \leq n$.
+\end{Lemma}
+
+\begin{Definition}
+Eine stetige Abbildung $f: X \rightarrow Y$ ist eine Homotopieäquivalenz, wenn eine stetige Abbildung $g: Y \rightarrow X$ existiert, sodass $f \circ g \cong id_Y$ und $g \circ f \cong id_X$.
+\end{Definition}
 
 \end{document}
-
